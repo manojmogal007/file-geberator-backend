@@ -26,7 +26,8 @@ exports.getusers=async(req,res)=>{
   });
 
   const xls = json2xls(sanitizedData);
-  const directoryPath = path.resolve(process.cwd(), 'excel_files');
+  // const directoryPath = path.resolve(process.cwd(), 'excel_files');
+  const directoryPath = path.resolve('/tmp', 'excel_files');
   const filePath = path.join(directoryPath, 'form_data.xlsx');
 
   // Create the directory if it doesn't exist
@@ -45,4 +46,11 @@ exports.getusers=async(req,res)=>{
     // Delete the file from the server filesystem after download
     fs.unlinkSync(filePath);
   });
+  // try{
+  //     const alluser=await Formmodel.find().lean()
+  //     res.status(200).json({'msg':'All data',alluser})
+  // }catch(err){
+  //     console.log(err)
+  //     res.status(400).json({'msg':'Data error'})
+  //   }
 }
